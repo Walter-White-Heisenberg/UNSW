@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main(void)
+{
+double F 
+double C
+C=(F - 40) * 5/9;
+printf("please enter F value");
+printf("%lf",);
+scanf("");
+return 0;
+}

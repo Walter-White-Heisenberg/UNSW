@@ -1,0 +1,33 @@
+#include<stdio.h>
+
+int main(int argc, char *argv[]){
+    int character;
+    char word[27] = "abcdefghijklmnopqrstuvwxyz";
+    int complex[26];
+    int i;
+    i = 0;
+    
+    while(i < 26){
+        complex[i] = (2019 - argv[1][i]) * word[i]; 
+        i++;
+    }
+    
+    character = getchar();
+    while(character != EOF){       
+        if((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z')){
+            i = 0;
+            while(i < 26){
+                if(character == argv[1][i]){
+                    printf("%c",complex[i] / (2019 - argv[1][i]));
+                }else if(character == argv[1][i]] - 'a' + 'A' && i < 26){
+                    printf("%c",complex[i] / (2019 - argv[1][i]) - 'a' + 'A');
+                }
+                i++;                 
+            }
+        }else{
+            printf("%c",character);
+        }    
+        character = getchar();
+    }
+    return 0;
+}

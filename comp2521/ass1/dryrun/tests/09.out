@@ -1,0 +1,11 @@
+Test 09 - searchTB - simple search
+Read in TB from 'search-1.txt' into tb
+> linesTB(tb);
+3
+> dumpTB(tb, false);
+Hello World My
+name is jarred lovegood
+and i love carley ray jepson
+> searchTB(tb, "love");
+(2, 16) -> (3, 7) -> X
+> releaseTB(tb);

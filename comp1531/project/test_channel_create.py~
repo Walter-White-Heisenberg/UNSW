@@ -1,0 +1,40 @@
+'''
+description:
+channel_create.py (token, name, is_public) return {channel_id}
+ValueError when:
+Name is more than 20 characters long
+
+assumption 
+1.Channel id is unique
+2.the creater need to login to create channel
+'''
+import pytest
+
+from auth_function import *
+
+'''
+when the length of name is longer than 20 letter
+'''
+
+
+def test_very_long_channel_name():
+    assert auth_register("liyun8686@126.com","12345678","Yu","Li") == {"token": "liyun8686@126.com","u_id":1}
+    assert auth_login("liyun8686@126.com","12345678") == {"token": "liyun8686@126.com","u_id":1}
+    with pytest.raise(ValueError) as e:
+        channel_create("liyun8686@126.com","1234567890123456789013",T)
+    assert str(e) == "The channel name is too long"
+    
+ '''
+ check for normal functioning
+ '''   
+def test_channel_create_normal():
+    '''
+    create a channel first
+    '''
+    assert auth_register("liyun8686@126.com","12345678","Yu","Li") == {"token": "liyun8686@126.com","u_id":1}
+    assert auth_login("liyun8686@126.com","12345678") == {"token": "liyun8686@126.com","u_id":1}
+    x =  channel_create("liyun8686@126.com","Firstch",T)
+    '''
+    check if x is a valid channel id
+    '''
+    assert channel_details("liyun8686@126.com",x) == {"name":"Firstch","owner_members":[{"u_id":1, "name_first":"Yu", "name_last":"Li"}], "all_members":[{"u_id":1, "name_first":"Yu", "name_last":"Li"}]}

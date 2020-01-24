@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main(void)
+{
+double farenheit;
+double celsius;
+printf("enter a temperature in F");
+scanf("%lf" &farenheit);
+celsius = (farenheit - 32) * 5/9;
+printf("%lf\n",celsius);
+return 0;
+}

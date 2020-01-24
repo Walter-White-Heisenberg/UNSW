@@ -1,0 +1,22 @@
+Test 11 - formRichText - simple 2
+Read in TB from 'richtext-2.txt' into tb
+> linesTB(tb);
+6
+> dumpTB(tb, false);
+*any _nesting_ should be ignored*
+*some_string*again_
+*some* _string_
+im different
+some *string_again_
+some#string*once_again*
+> formRichText(tb);
+> linesTB(tb);
+6
+> dumpTB(tb, false);
+<b>any _nesting_ should be ignored</b>
+<b>some_string</b>again_
+<b>some</b> <i>string</i>
+im different
+some *string<i>again</i>
+some#string<b>once_again</b>
+> releaseTB(tb);

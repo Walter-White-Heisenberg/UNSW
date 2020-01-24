@@ -1,0 +1,54 @@
+Test 14 (bonus) - undoTB - undoing mergeTB
+Read in TB from 'simple-1.txt' into tb1
+Read in TB from 'simple-2.txt' into tb2
+> linesTB(tb1);
+7
+> dumpTB(tb1, false);
+line 01
+line 02
+line 03
+line 04
+line 05
+line 06
+line 07
+> linesTB(tb2);
+5
+> dumpTB(tb2, false);
+line one
+line two
+line three
+line four
+line five
+> mergeTB(tb1, 3, tb2);
+> linesTB(tb1);
+12
+> dumpTB(tb1, false);
+line 01
+line 02
+line one
+line two
+line three
+line four
+line five
+line 03
+line 04
+line 05
+line 06
+line 07
+> undoTB(tb1);
+> linesTB(tb1);
+12
+> dumpTB(tb1, false);
+line 01
+line 02
+line one
+line two
+line three
+line four
+line five
+line 03
+line 04
+line 05
+line 06
+line 07
+> releaseTB(tb1);

@@ -1,0 +1,13 @@
+//a;sdlkfas
+#include <stdio.h>
+int main(void)
+{
+int height;
+
+height = 182;
+printf("my height is");
+printf("%d,height");
+printf("\nasdfsaf");
+return 0;
+}
+

@@ -1,0 +1,6 @@
+*any _nesting_ should be ignored*
+*some_string*again_
+*some* _string_
+im different
+some *string_again_
+some#string*once_again*

@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+ int main(void){
+    char *m = "0123456789*sdfdsfasdff1234567890";
+    char *x = NULL;
+    strcpy(x,m)
+    char *y = malloc(strlen(x)+3);
+    memcpy(y,x,10);
+    y[10] = 0;
+    strcat(y,"<b>");
+    strncat(y,x + 11, strlen(x) - 10);
+    printf("%s",y);
+    free(y);
+}

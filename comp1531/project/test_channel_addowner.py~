@@ -1,0 +1,66 @@
+'''
+channel_addowner(token, channel_id, u_id) return nothing
+ValueError when:
+Channel (based on ID) does not exist
+When user with user id u_id is already an owner of the channel
+AccessError when: the authorised user is not an owner of the slackr, or an owner of this channel
+
+Make user with user id u_id an owner of this channel
+'''
+
+'''
+assumption:
+1.people need to login to add another owner
+2.people don't need to be logged on to be set as onwer by other
+'''
+
+import pytest
+
+from channel_function import *
+
+
+'''
+check for non-existed channel_id
+'''	
+test_non_existed_id():
+    assert auth_register("liyun8686@126.com","12345678","Yu","Li") == {"token": "liyun8686@126.com","u_id":1} # success if assert return TRUE 
+    assert auth_login("liyun8686@126.com","12345678") == {"token": "liyun8686@126.com","u_id":1} # success if assert return TRUE 
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE  
+    assert auth_login("llalla@gmail.com","12345678") == {"token": "llalla@gmail.com","u_id":1} # success if assert return TRUE 
+    x =  channel_create("liyun8686@126.com","Firstch",T) 
+    with pytest.raise(ValueError) as e:
+        channel_addowner("liyun8686@126.com",x+1,2) # will fail
+    assert str(e) == "The channel-id does not exist"
+
+'''
+check for people who is already an owner
+'''
+test_add_people_already_in():
+    assert auth_register("liyun8686@126.com","12345678","Yu","Li") == {"token": "liyun8686@126.com","u_id":1} # success if assert return TRUE 
+    assert auth_login("liyun8686@126.com","12345678") == {"token": "liyun8686@126.com","u_id":1} # success if assert return TRUE 
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE  
+    assert auth_login("llalla@gmail.com","12345678") == {"token": "llalla@gmail.com","u_id":1} # success if assert return TRUE 
+    x =  channel_create("liyun8686@126.com","Firstch",T)
+    with pytest.raise(ValueError) as e:
+        channel_addowner("liyun8686@126.com",x,1)
+    assert str(e) == "The user already the owner of the channel"
+
+
+'''
+check for normal functioning when token is from token of owner of this channel
+'''
+
+test_normal_functioning():
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE  
+    assert auth_login("llalla@gmail.com","12345678") == {"token": "llalla@gmail.com","u_id":1}# success if assert return TRUE  
+    x = channel_create("llalla@gmail.com", "aaaaaaaaa", T)
+    assert auth_register("llllla@gmail.com", "12345678","llllla","lla") == {"token": "llllla@gmail.com","u_id":2}  # success if assert return TRUE 
+    assert auth_login("llllla@gmail.com","12345678") == {"token": "llllla@gmail.com","u_id":2}  # success if assert return TRUE 
+    channel_invite("llllla@gmail.com",x,2)
+    
+    assert channel_details("llllla@gmail.com",x) == {"name":"aaaaaaaaa", "owner_members":[{"u_id":1, "name_first":"llalla", "name_last":"lla"},{"u_id":2, "name_first":"llllla", "name_last":"lla"}], "all_members":[{"u_id":1, "name_first":"llalla", "name_last":"lla"},{"u_id":2, "name_first":"llllla", "name_last":"lla"}]}
+    
+
+
+
+

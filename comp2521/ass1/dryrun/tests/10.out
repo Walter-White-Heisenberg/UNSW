@@ -1,0 +1,18 @@
+Test 10 - formRichText - simple 1
+Read in TB from 'richtext-1.txt' into tb
+> linesTB(tb);
+4
+> dumpTB(tb, false);
+#this is a title
+*this should be bold*
+_this should be italic_
+this should be normal
+> formRichText(tb);
+> linesTB(tb);
+4
+> dumpTB(tb, false);
+<h1>this is a title</h1>
+<b>this should be bold</b>
+<i>this should be italic</i>
+this should be normal
+> releaseTB(tb);

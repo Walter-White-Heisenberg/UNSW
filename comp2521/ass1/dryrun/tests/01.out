@@ -1,0 +1,13 @@
+Test 01 - dumpTB - no line numbers
+Read in TB from 'simple-1.txt' into tb
+> linesTB(tb);
+7
+> dumpTB(tb, false);
+line 01
+line 02
+line 03
+line 04
+line 05
+line 06
+line 07
+> releaseTB(tb);

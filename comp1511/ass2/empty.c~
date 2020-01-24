@@ -1,0 +1,9 @@
+static Pokemon create_bulbasaur(void) {
+    Pokemon pokemon = new_pokemon(
+            BULBASAUR_ID, BULBASAUR_NAME,
+            BULBASAUR_HEIGHT, BULBASAUR_WEIGHT,
+            BULBASAUR_FIRST_TYPE,
+            BULBASAUR_SECOND_TYPE
+    );
+    return pokemon;
+}

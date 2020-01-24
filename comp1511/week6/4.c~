@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main(void){
+    char c;
+    c = getchar();
+    while(c != EOF){
+        printf("character %c gets a ASCII code value as %d\n",c,c); 
+        printf("%c , %d ",c+5,c+5);       
+        c = getchar();
+
+    }
+    
+
+}

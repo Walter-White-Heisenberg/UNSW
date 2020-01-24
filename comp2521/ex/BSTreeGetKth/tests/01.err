@@ -1,0 +1,35 @@
+==40183== Memcheck, a memory error detector
+==40183== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==40183== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==40183== Command: ./testBSTreeGetKth
+==40183== 
+==40183== Invalid read of size 8
+==40183==    at 0x1093AB: BSTreeGetKth (BSTreeGetKth.c:31)
+==40183==    by 0x109256: main (testBSTreeGetKth.c:18)
+==40183==  Address 0x8 is not stack'd, malloc'd or (recently) free'd
+==40183== 
+==40183== 
+==40183== Process terminating with default action of signal 11 (SIGSEGV)
+==40183==  Access not within mapped region at address 0x8
+==40183==    at 0x1093AB: BSTreeGetKth (BSTreeGetKth.c:31)
+==40183==    by 0x109256: main (testBSTreeGetKth.c:18)
+==40183==  If you believe this happened as a result of a stack
+==40183==  overflow in your program's main thread (unlikely but
+==40183==  possible), you can try to increase the size of the
+==40183==  main thread stack using the --main-stacksize= flag.
+==40183==  The main thread stack size used in this run was 8388608.
+==40183== 
+==40183== HEAP SUMMARY:
+==40183==     in use at exit: 120 bytes in 5 blocks
+==40183==   total heap usage: 14 allocs, 9 frees, 16,775 bytes allocated
+==40183== 
+==40183== LEAK SUMMARY:
+==40183==    definitely lost: 0 bytes in 0 blocks
+==40183==    indirectly lost: 0 bytes in 0 blocks
+==40183==      possibly lost: 0 bytes in 0 blocks
+==40183==    still reachable: 120 bytes in 5 blocks
+==40183==         suppressed: 0 bytes in 0 blocks
+==40183== Rerun with --leak-check=full to see details of leaked memory
+==40183== 
+==40183== For counts of detected and suppressed errors, rerun with: -v
+==40183== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

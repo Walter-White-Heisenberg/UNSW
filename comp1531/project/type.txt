@@ -1,0 +1,85 @@
+Variable name
+                                                                    Type
+named exactly email
+
+                                                                    string
+
+
+named exactly id
+
+                                                                    integer
+
+
+named exactly password
+
+                                                                    string
+
+
+named exactly token
+
+                                                                    string
+
+
+named exactly message
+
+                                                                    string
+
+
+contains substring name
+
+                                                                    string
+
+
+contains substring code
+
+                                                                    string
+
+
+has prefix is_
+
+                                                                    boolean
+
+
+has prefix time_
+
+                                                                    datetime
+
+
+has suffix _id
+
+                                                                    integer
+
+
+has suffix _url
+
+                                                                    string
+
+
+has suffix _str
+
+                                                                    string
+
+
+has suffix end
+
+                                                                    integer
+
+
+has suffix start
+
+                                                                    integer
+
+
+(outputs only) named exactly messages
+
+                                                                    List of dictionaries, where each dictionary contains types { u_id, message, time_created, is_unread }
+
+
+(outputs only) named exactly channels
+
+                                                                    List of dictionaries, where each dictionary contains types { id, name }
+
+
+(outputs only) named exactly members
+
+                                                                    List of dictionaries, where each dictionary contains types { u_id, name_first, name_last }

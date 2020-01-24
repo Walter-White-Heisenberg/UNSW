@@ -1,0 +1,14 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main(void){
+    int lines;
+    char *x = NULL;
+    while(scanf("%d",&lines) == 1){  
+        int length = snprintf( NULL, 0, "%d", lines );
+        x = malloc(length + 4);
+        snprintf(x, length + 4, "+,%d,", lines);
+        printf("%s\n",x);
+        free(x);
+    }
+}

@@ -1,0 +1,34 @@
+#include<stdio.h>
+
+void swap(int *i, int *j);
+void wap2(15xs, int i, int j);
+
+int main(void)
+{
+    int xs[3];
+    
+    printf("Enter three numbers: ");
+    scanf("%d %d %d",&xs[0],&xs[1],&xs[2]);
+    
+    printf("{ %d, %d, %d }\n", xs[0], xs[1], xs[2]);
+    
+    /*if(a>b){
+        swap(&a,&b);
+    }
+    printf("a = %d, b= %d, c=%d\n",a,b,c);
+    */
+    if (xs[0]>xs[1]){
+    wap2(xs,xs[1],xs[0]);
+    }
+    return 0;
+}
+void swap(int *i, int *j){
+    int tmp =*i;
+    *i=*j;
+    *j=tmp;
+}
+void wap2(xs, int i,int j){
+    int tmp =xs[i];
+    xs[i]=xs[j];
+    xs[j]=tmp;
+}

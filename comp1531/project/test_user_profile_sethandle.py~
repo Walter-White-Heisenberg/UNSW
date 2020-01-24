@@ -1,0 +1,25 @@
+'''
+description:
+user_profile_sethandle
+(token, handle_str)
+{}
+
+ValueError when:handle_str is no more than 20 characters
+
+Update the authorised user's handle (i.e. display name)
+
+assumption:
+1.use need to login to change handle str
+'''
+
+
+
+'''
+check when handle_str is more than 20 characters
+'''
+def test_too_long_handleStr():
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE  
+    assert auth_login("llalla@gmail.com","12345678") == {"token": "llalla@gmail.com","u_id":1}
+    dictionary = user_profile("llalla@gmail.com","u_id":1)
+    x = dictionary.get("handle_str")
+    

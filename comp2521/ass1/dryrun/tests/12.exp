@@ -1,0 +1,30 @@
+Test 12 (bonus) - diffTB - simple
+Read in TB from 'diff-1.txt' into tb1
+> linesTB(tb1);
+4
+> dumpTB(tb1, false);
+first line
+second line
+third line
+fourth line
+Read in TB from 'diff-2.txt' into tb2
+> linesTB(tb2);
+4
+> dumpTB(tb2, false);
+first line
+2nd line
+third line
+quatre
+> diffTB(tb1, tb2);
+*** tb2:
+first line
+2nd line
+third line
+quatre
+*** tb1 after applying edit commands:
+first line
+2nd line
+third line
+quatre
+> releaseTB(tb1);
+> releaseTB(tb2);

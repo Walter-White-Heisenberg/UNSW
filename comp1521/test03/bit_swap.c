@@ -1,0 +1,16 @@
+// swap pairs of bits of a 64-bit value, using bitwise operators
+#include<stdio.h>
+#include <assert.h>
+#include <stdint.h>
+#include <stdlib.h>
+
+// return value with pairs of bits swapped
+uint64_t bit_swap(uint64_t value) {
+    uint64_t new = 0,m = 0, k = 0;
+    for(int i = 0; i <= 31 ; i++){
+        m = value & ((uint64_t)1 << (2 * i + 1));
+        k = value & ((uint64_t)1 << (2 * i));
+        new = new + (m >> 1) + (k << 1);
+    }
+    return new;
+}

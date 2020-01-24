@@ -1,0 +1,33 @@
+
+
+//mul $d, $s, $t 	multiply to low 	d = s * t 	011100ssssstttttddddd00000000010
+
+
+
+
+
+
+//addi $t, $s, I 	add immediate 	t = s + I 	001000ssssstttttIIIIIIIIIIIIIIII
+//andi $t, $s, I 	and with immediate 	t = s & I 	001100ssssstttttIIIIIIIIIIIIIIII
+//ori $t, $s, I 	or with immediate 	t = s l I 	001101ssssstttttIIIIIIIIIIIIIIII
+//xori $t, $s, I 	xor with immediate 	t = s ^ I 	001110ssssstttttIIIIIIIIIIIIIIII
+
+
+//slti $t, $s, I 	set on less than immediate 	t = (s < I) 	001010ssssstttttIIIIIIIIIIIIIIII
+//lui $t, I 	load upper immediate 	t = I << 16 	00111100000tttttIIIIIIIIIIIIIIII
+//lb $t, O($b) 	load byte 	t = *(int8*)(b + O) 	100000bbbbbtttttOOOOOOOOOOOOOOOO
+//lh $t, O($b) 	load half word 	t = *(int16*)(b + O) 	100001bbbbbtttttOOOOOOOOOOOOOOOO
+//lw $t, O($b) 	load word 	t = *(int32*)(b + O) 	100011bbbbbtttttOOOOOOOOOOOOOOOO
+//sb $t, O($b) 	store byte 	*(uint8*)(b + O) = (t & 0xff) 	101000bbbbbtttttOOOOOOOOOOOOOOOO
+//sh $t, O($b) 	store half 	*(uint16*)(b + O) = (t & 0xffff) 	101001bbbbbtttttOOOOOOOOOOOOOOOO
+//sw $t, O($b) 	store word 	*(uint32*)(b + O) = t 	101011bbbbbtttttOOOOOOOOOOOOOOOO
+//beq $s, $t, I 	branch on equal 	if (s == t) PC += I<<2; else PC += 4; 	000100ssssstttttIIIIIIIIIIIIIIII
+//bne $s, $t, I 	branch on not equal 	if (s != t) PC += I<<2; else PC += 4; 	000101ssssstttttIIIIIIIIIIIIIIII
+//blez $s, I 	branch less than or equal than zero 	if (s <= 0) PC += I<<2; else PC += 4; 	000110sssss00000IIIIIIIIIIIIIIII
+//bgtz $s, I 	branch greater than zero 	if (s > 0) PC += I<<2; else PC += 4; 	000111sssss00000IIIIIIIIIIIIIIII
+//bltz $s, I 	branch on less than zero 	if (s < 0) PC += I<<2; else PC += 4; 	000001sssss00000IIIIIIIIIIIIIIII
+//bgez $s, I 	branch on greater than or equal to zero 	if (s >= 0) PC += I<<2; else PC += 4; 	000001sssss00001IIIIIIIIIIIIIIII
+//j X 	jump 	PC = (PC & 0xF0000000) | (X << 2) 	000010XXXXXXXXXXXXXXXXXXXXXXXXXX
+//jal X 	jump and link 	$ra = PC + 4; PC = (PC & 0xF0000000) | (X << 2) 	000011XXXXXXXXXXXXXXXXXXXXXXXXXX
+//jr $s 	jump register 	PC = s 	000000sssss000000000000000001000
+//syscall 	system call 	determined by $v0 	00000000000000000000000000001100

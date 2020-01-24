@@ -1,0 +1,141 @@
+// Lance-Williams Algorithm for Hierarchical Agglomerative Clustering
+// COMP2521 Assignment 2
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "Graph.h"
+#include "LanceWilliamsHAC.h"
+
+
+static double lance_williams(double ik, double jk, int method) {
+    // one of the distances is infinity,
+    // the other distance is the distance.
+    if (ik == 0x7FFFFFFF) return jk;
+    else if (jk == 0x7FFFFFFF) return ik;
+
+    //find the absolute difference beteen two value
+    double abs = (ik > jk) ? (ik - jk) : (jk - ik);
+
+    //if we are using single linkage, abs's sign is reversed, otherwise unchanged
+    if (method == SINGLE_LINKAGE) abs = -abs;
+    return 0.5 * (jk + ik + abs);
+}
+
+
+//find the minimum distance given in the 2d double array
+static void min(double **distance, int numV, int *row, int *col){
+    double min = distance[0][0];
+    for(int i = 0; i < numV;i++)
+        for(int j = 0; j < numV; j++)
+            if(min >= distance[i][j] && i != j){
+                *row = i;
+                *col = j;
+                min = distance[i][j];
+            } 
+            
+  
+}
+
+/**
+ * Generates  a Dendrogram using the Lance-Williams algorithm (discussed
+ * in the spec) for the given graph  g  and  the  specified  method  for
+ * agglomerative  clustering. The method can be either SINGLE_LINKAGE or
+ * COMPLETE_LINKAGE (you only need to implement these two methods).
+ * 
+ * The function returns a 'Dendrogram' structure.
+ */
+Dendrogram LanceWilliamsHAC(Graph g, int method) {
+    int numV = GraphNumVertices(g);
+    
+    //innitialize two dimensional array (fill up every number as the biggest int)
+    double **distance = malloc(numV * sizeof(double *)); 
+         
+    for(int i = 0; i < numV;i++){
+        distance[i] = malloc(numV * sizeof(double));
+        for(int j = 0; j < numV; j++)        
+                distance[i][j] = 0x7FFFFFFF;
+    }
+    //update the minimum direct distance between any two point by outlink and inlink   
+    for(int i = 0; i < numV;i++) {
+        for (AdjList curr = GraphOutIncident(g,i); curr != NULL; curr = curr->next) {
+            double tmp = 1.0 / curr->weight;
+            distance[i][curr->v] = (tmp < distance[i][curr->v]) ? tmp : distance[i][curr->v];
+        }
+        for (AdjList curr = GraphInIncident(g,i); curr != NULL; curr = curr->next) {
+            double tmp = 1.0 / curr->weight;
+            distance[curr->v][i] = (tmp < distance[curr->v][i]) ? tmp : distance[curr->v][i];
+        }
+    }
+    
+    // Array of dendrograms, after all the operation the first one of the array will become the head of the tree.
+    Dendrogram *helper = malloc(numV * sizeof(Dendrogram));
+    int row = 0, col = 0;
+    
+    for (int i = 0; i < numV; i++){
+        helper[i] = malloc(sizeof(struct DNode));
+        helper[i]->vertex = i;
+        helper[i]->left = helper[i]->right = NULL;
+    }
+    
+    //breaker is for the looping purpose, when all the point after helper[0] is NULL, the loop will end
+    int breaker = 1, m = 0;    
+    while(breaker != 0 && m <= numV){
+        //passing the pointer so the change of value can be saved
+        min(distance, numV, &row, &col);
+        //swap value if col is smaller than row
+        if (row > col) {
+            int tmp = row;
+            row = col;
+            col = tmp;
+        } 
+        //update distances for vertices adjacent to row and column
+        for (int i = 0; i < numV; i++) {
+            if ((i != row) && (i != col) && (helper[i] != NULL)) {
+                distance[i][row] = lance_williams(distance[i][row], distance[i][col], method);
+                distance[row][i] = lance_williams(distance[row][i], distance[col][i], method);
+            }
+            distance[i][col] = 0x7FFFFFFF;
+            distance[col][i] = 0x7FFFFFFF;
+        }
+        // Create new dendrogram containing row and colomn.
+        Dendrogram new = malloc(sizeof(struct DNode));
+        new->left = helper[row];
+        new->right = helper[col];
+        helper[row] = new;
+        helper[col] = NULL;
+        
+        //undating breaker
+        breaker = 0;
+        for(int i = 1; i < numV; i++){
+            if (helper[i] != NULL) {
+                breaker = 1;
+                break;
+            }
+        }
+        m++;
+    }           
+    //free the distance initialized before
+    for(int i = 0; i < numV; i++)
+        free(distance[i]);
+    free(distance);
+    
+    //to avoid the memory   
+    Dendrogram final = helper[0];
+    helper[0] = NULL;
+    free(helper);
+    
+    //first node of array contains the entire tree  
+    return final;
+}
+
+/**
+ * Frees all memory associated with the given Dendrogram structure.
+ */
+void freeDendrogram(Dendrogram d) {
+    if(d == NULL) return;
+    freeDendrogram(d->left);
+    freeDendrogram(d->right);
+    free(d);
+}
+

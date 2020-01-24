@@ -1,0 +1,27 @@
+'''message_edit
+(token, message_id, message)
+{}
+
+ValueError when:
+Message with message_id edited by authorised user is not the poster of the message
+Message with message_id was not sent by the authorised user making this request
+Message with message_id was not sent by an owner of this channel
+Message with message_id was not sent by an admin or owner of the slack
+normal function: Given a message, update it's text with new text
+'''
+
+
+
+
+import pytest
+
+from message_function import *
+
+'''
+check if message_id edited by authorised user is not the poster of the messsage
+'''
+
+
+'''
+check if message was not sent by authorised user 
+'''

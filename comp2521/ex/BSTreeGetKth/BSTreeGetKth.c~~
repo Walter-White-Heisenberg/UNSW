@@ -1,0 +1,12 @@
+
+#include <stdlib.h>
+
+#include "BSTree.h"
+
+int BSTreeGetKth(BSTree t, int k) {
+	return (t == NULL) ? (k == 0) ? A : c : B;
+	    if(k == 0) return t->value
+	    
+	return (t = NULL) ? 0 : BSTreeGetKth(t->left, k - 1) + BSTreeGetKth(t->right, k + 1);
+}
+

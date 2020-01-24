@@ -1,0 +1,97 @@
+Input	Initial	            Has	            Number	            AvgTime	                AvgTime
+Size	Order	            Dups	        of runs	            forusel	                forsort
+
+
+
+5000	random	           no   	        10	       	        0.0674   	        	0.0037
+5000	sorted	           no   	        10	       	        0.0122	   	            0.0026
+5000	reverse	           no   	        10	   	            0.0126   	        	0.0029
+5000	random	           yes  	        10	   	            0.0709  	        	0.0038
+5000	sorted	           yes  	        10   	        	0.0171   	        	0.0034
+5000	reverse	           yes  	        10  	   	        0.0159   	        	0.0042
+
+
+
+10000	random	           no   	        10	       	        0.2741   	        	0.0053
+10000	sorted	           no   	        10	       	        0.0172   	        	0.0036
+10000	reverse	           no   	        10	       	        0.0170   	        	0.0041
+10000	random	           yes          	10	       	        0.2761   	        	0.0053
+10000	sorted	           yes  	        10	       	        0.0215       	        0.0045
+10000	reverse	           yes          	10	       	        0.0283   	        	0.0066
+
+
+
+20000	random	           no            	10	       	        1.3402   	        	0.0101
+20000	sorted	           no            	10   	        	0.0267   	        	0.0053
+20000	reverse	           no	            10   	        	0.0274   	        	0.0060
+20000	random	           yes	            10   	        	1.3582   	        	0.0101
+20000	sorted	           yes	            10   	        	0.0337   	        	0.0076
+20000	reverse	           yes          	10   	        	0.0454   	        	0.0124
+
+
+
+30000	random	           no	            10   	        	3.3048   	        	0.0144
+30000	sorted	           no	            10   	        	0.0373   	        	0.0083
+30000	reverse	           no	            10   	        	0.0366   	        	0.0085
+30000	random	           yes	            10   	        	3.3082   	        	0.0157
+30000	sorted	           yes	            10   	        	0.0505  	        	0.0124
+30000	reverse	           yes	            10   	        	0.0667   	        	0.0170
+
+
+
+40000	random	           no	            10   	        	6.1433   	        	0.0192
+40000	sorted	           no	            10   	        	0.0458   	        	0.0099
+40000	reverse        	   no	            10   	        	0.0466     	        	0.0110
+40000	random	           yes	            10   	        	6.7678   	        	0.0218
+40000	sorted	           yes	            10   	        	0.0552   	        	0.0122
+40000	reverse	           yes	            10   	        	0.0808   	        	0.0260
+
+
+
+50000	random	           no	            10  	        	9.9146   	        	0.0237
+50000	sorted	           no	            10   	        	0.0549   	        	0.0120
+50000	reverse	           no	            10   	        	0.0576   	        	0.0138
+50000	random	           yes	            10   	        	10.0819   	        	0.0250
+50000	sorted	           yes	            10   	        	0.0956   	        	0.0232
+50000	reverse	           yes	            10   	        	0.0984   	        	0.0296
+
+
+
+60000	random	           no	            10  	        	14.7992   	        	0.0287
+60000	sorted	           no	            10   	        	0.0653   	        	0.0140
+60000	reverse	           no	            10   	        	0.0656     	        	0.0159
+60000	random	           yes	            10   	        	16.2464   	        	0.0307
+60000	sorted	           yes	            10   	        	0.0950   	        	0.0259
+60000	reverse	           yes	            10   	        	0.1120   	        	0.0353
+
+
+Comments:
+1.As number increases by 10000 for duplicated random sequence, we can observed that the rate of change of time intlist taking is more and more (1s 2s 3s 4s 5s),
+but that of sorting function of system almost increases 0.0045s constantly. 
+2.As number increases by 10000 for unduplicated random sequence, we can observed that the rate of change of time intlist taking is more and more (1s 2s 3s 4s 5s),
+but that of sorting function of system almost increases 0.0045s constantly. And it's obvious that the time of intlist taking is always much longer than sorting funtion.
+3.we can see the for same order of data, duplicated data always takes longer.
+4. And it's obvious that the time of intlist taking is always much longer than sorting funtion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

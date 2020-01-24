@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include <stdlib.h>
+
+#include "BSTree.h" 
+int count(BSTree t){
+    if(t== NULL) return 0;
+    return 1+count(t->left)+count(t->right);
+}
+
+int BSTreeGetKth(BSTree t, int k) {
+	BSTree n = t;
+	int m = count(n->left);
+	while(m != k){
+	    if(m<k && t->right != NULL){
+	        t = t->right;
+	        m++;
+	        //printf("1111\n");
+	    }else if(m > k && t->left != NULL ){
+	        t = t->left;
+	        m--;
+	        //printf("2222\n");
+	    }else if(t->left != NULL){
+	        t = t->left;
+	        m--;
+	        //printf("3333\n");
+	    }else{
+	        t = t->right;
+	        m++;
+	        //printf("4444\n");
+	    }
+	    m = count(t->left);
+	}
+	return t->value;
+}
+

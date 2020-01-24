@@ -1,0 +1,11 @@
+
+#include <stdlib.h>
+
+#include "tree.h"
+
+int TreeHeight(Tree t) {
+   if(t == NULL) return 0;
+   int r = 1 + TreeHeight(t->right);
+   int l = 1 + TreeHeight(t->left);
+}
+

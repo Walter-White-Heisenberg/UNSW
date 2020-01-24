@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+       #include <sys/stat.h>
+       #include <unistd.h>
+#include<stdint.h>
+void print_mode(char *name){
+    struct stat S;
+    if(stat(name, &S) == -1) exit(1);
+    uint32_t code = S.st_mode;
+    char str1[6] = "-xw-r";
+    char str2[13] = "-ic-d-b---r-l";
+    char mode[11] = {0};
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            mode[9 - j - 3 * i] = str1[code & (1 << j)];
+        }
+        code = code >> 3;
+    }
+    mode[0] = str2[code >> 3];
+    printf("%s %s\n",mode,name);
+}
+int main(int argc, char ** argv){
+    if (argc == 1) return 0;
+    for(int i = 1; i < argc; i++)
+        print_mode(argv[i]);
+}

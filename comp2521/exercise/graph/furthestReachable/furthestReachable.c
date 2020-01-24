@@ -1,0 +1,38 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "Graph.h"
+#include "Queue.h"
+
+int furthestReachable(Graph g, int src) {
+	int *x = calloc(GraphNumVertices(g),4);
+	int *path = calloc(GraphNumVertices(g),4);
+	for(int i = 0; i < GraphNumVertices(g);i++)
+	    path[i] = (i != src) * (GraphNumVertices(g)+1);
+	Queue QQ = QueueNew();
+	QueueEnqueue(QQ,src);
+	x[src]  = 1;
+	while(!QueueIsEmpty(QQ)){
+	    int point = QueueDequeue(QQ);
+	    for(int i = 0; i < GraphNumVertices(g);i++){
+	        if(GraphIsAdjacent(g,point,i) && !x[i]){
+	            QueueEnqueue(QQ,i);
+	            x[i] = 1;
+	            if(path[i] > 1 + path[point]) path[i] = 1 + path[point];
+	        }
+	    }
+	}
+	int furthest = -1, max = -1;
+	for(int i = 0; i < GraphNumVertices(g);i++){
+	    if(max <= path[i] && x[i] == 1){
+	        max = path[i];
+	        furthest = i;
+	    }
+	}
+	free(x);
+	free(path);
+	QueueFree(QQ);
+	return furthest;
+}
+

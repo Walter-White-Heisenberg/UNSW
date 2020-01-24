@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main(void)
+{
+int x;
+int y;
+printf("How many scoops? ");
+scanf("%d\n", &x);
+printf("How many dollars does each scoop cost? ");
+scanf("%d\n",&y);
+if( x*y <= 10 ){printf("You have enough money!\n");}
+else{printf("Oh no, you don't have enough money :(\n");}
+return 0;
+}

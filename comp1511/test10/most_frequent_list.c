@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+struct node {
+    struct node *next;
+    int          data;
+};
+
+int most_frequent(struct node *head);
+struct node *strings_to_list(int len, char *strings[]);
+
+// DO NOT CHANGE THIS MAIN FUNCTION
+
+int main(int argc, char *argv[]) {
+    // create linked list from command line arguments
+    struct node *head = strings_to_list(argc - 1, &argv[1]);
+
+    int result = most_frequent(head);
+    printf("%d\n", result);
+
+    return 0;
+}
+
+
+// return the value which occurs most frequently in a linked list
+// if several values are equally most frequent
+// the value that occurs earliest in the list is returned
+int most_frequent(struct node *head) {
+    if(head->next == NULL){
+        return head->data;
+    }
+    struct node *n = head;
+    struct node *m = head;
+    int sum = 0;
+    int stop = 0;
+    while(n != NULL){
+        sum = sum + n->data;
+        n = n->next;
+    }
+    n = head;   
+    while(n != NULL){
+        m = head;
+        while(m != NULL){
+            if(m->data % sum == n->data % sum){
+                m->data = m->data + sum;
+            }
+            m = m->next;
+        }
+        n = n->next;
+    }
+    struct node *t = head;
+    int max = t->data;
+    while(t != NULL){
+        if(max < t->data){
+            max = t->data;
+        }
+        t = t->next;
+    }    
+    t = head;
+    while(t != NULL && stop == 0){       
+        if(max / sum == t->data / sum){
+            stop = t->data;
+        }
+        
+        t = t->next;
+    }
+    t = head;
+    while(t != NULL){       
+        t->data = t->data % sum;
+        t = t->next;
+    }
+    return stop % sum;
+}
+
+
+// DO NOT CHANGE THIS FUNCTION
+
+// create linked list from array of strings
+struct node *strings_to_list(int len, char *strings[]) {
+    struct node *head = NULL;
+    for (int i = len - 1; i >= 0; i = i - 1) {
+        struct node *n = malloc(sizeof (struct node));
+        assert(n != NULL);
+        n->next = head;
+        n->data = atoi(strings[i]);
+        head = n;
+    }
+    return head;
+}

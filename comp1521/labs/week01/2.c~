@@ -1,0 +1,11 @@
+#include<stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define ss 34343
+int main(void) {
+    FILE *file = fopen()
+    strcpy(x,"asdfasdf");
+    x[5] = '#';
+    printf("%s\n",x);
+    free(x); 
+}

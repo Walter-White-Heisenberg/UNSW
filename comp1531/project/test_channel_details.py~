@@ -1,0 +1,72 @@
+'''
+description:
+channel_details(token, channel_id)
+return: { name, owner_members, all_members }
+ValueError when:Channel (based on ID) does not exist
+AccessError when:Authorised user is not a member of channel with channel_id
+function should :      Given a Channel with ID channel_id that the authorised user is part of, provide basic details about the channel
+'''
+'''
+assumption:
+1.the channel
+2.the email in the channel_detail must be the valid
+3.u need to login to access channel details
+4.u don't need to login to be invited into a channel
+'''
+import pytest
+
+from channel_function import *
+
+class AccessError(Exception):
+    pass
+
+
+'''
+check for the non-existed channel id
+'''
+def test_invalid_channel_id():
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE 
+    with pytest.raise(ValueError) as e
+        channel_details("llalla@gmail.com",1);
+    assert str(e) == "The id doesn't exist"
+
+
+'''
+check for the unlogin user 
+'''
+def test_invalid_channel_id():
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE  
+    assert auth_login("llalla@gmail.com","12345678") == {"token": "llalla@gmail.com","u_id":1}
+    x = channel_create("llalla@gmail.com", "aaaaaaaaa", T)
+    auth_logout("llalla@gmail.com","12345678")
+    with pytest.raise(AccessError) as e
+        channel_details("llalla@gmail.com",x);
+    assert str(e) == "The user is not login yet"
+'''
+check for the user who is not in the list
+'''  
+    
+    assert auth_register("llllla@gmail.com", "12345678","llalla","lla") == {"token": "llllla@gmail.com","u_id":1}  # success if assert return TRUE 
+    assert auth_login("llllla@gmail.com","12345678") == {"token": "llllla@gmail.com","u_id":1}  # success if assert return TRUE 
+    with pytest.raise(AccessError) as e
+        channel_details("llllla@gmail.com",x);
+    assert str(e) == "The user is not in the group"
+    
+
+'''
+check for the normal functioning
+'''
+def test_channel_details_normal():
+    assert auth_register("llalla@gmail.com", "12345678","llalla","lla") == {"token": "llalla@gmail.com","u_id":1}  # success if assert return TRUE  
+    assert auth_login("llalla@gmail.com","12345678") == {"token": "llalla@gmail.com""u_id":1}
+    x = channel_create("llalla@gmail.com", "aaaaaaaaa", T)
+    assert auth_register("llllla@gmail.com", "12345678","llllla","lla") == {"token": "llllla@gmail.com","u_id":2}  # success if assert return TRUE 
+    assert auth_login("llllla@gmail.com","12345678") == {"token": "llllla@gmail.com""u_id":2}  # success if assert return TRUE 
+    channel_invite("llllla@gmail.com",x,user_id????????)
+    assert channel_details("llllla@gmail.com",x) == {"name":"aaaaaaaaa", "owner_members":[{"u_id":1, "name_first":"llalla", "name_last":"lla"}], "all_members":[{"u_id":1, "name_first":"llalla", "name_last":"lla"},{"u_id":2, "name_first":"llllla", "name_last":"lla"}]}
+
+
+
+
+
+

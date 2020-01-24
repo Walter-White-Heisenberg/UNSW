@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main(void)
+{
+    int x;
+    int y=1;
+   
+    int z=0;
+    printf("Enter number: ");
+    scanf("%d",&x);
+    printf("The factors of %d are: \n",x);
+    while(y<=x)
+    {
+        int i=0;
+        i=i+y;
+        while(x % i == 0)
+        {   
+            printf("%d\n",y);
+            z=z+y;
+            i=x-1;
+        }
+        y=y+1;
+        
+        
+    }
+    printf("Sum of factors = %d\n",z);
+    if(2*x==z)
+    {
+        printf("%d is a perfect number\n",x);
+    }else
+    {
+        printf("%d is not a perfect number\n",x);
+    }
+    return 0;
+}

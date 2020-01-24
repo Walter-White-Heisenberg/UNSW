@@ -1,0 +1,42 @@
+Test 15 (bonus) - redoTB - undoing and redoing deleteTB
+Read in TB from 'simple-1.txt' into tb
+> linesTB(tb);
+7
+> dumpTB(tb, false);
+line 01
+line 02
+line 03
+line 04
+line 05
+line 06
+line 07
+> deleteTB(tb, 2, 3);
+> linesTB(tb);
+5
+> dumpTB(tb, false);
+line 01
+line 04
+line 05
+line 06
+line 07
+> undoTB(tb);
+> linesTB(tb);
+7
+> dumpTB(tb, false);
+line 01
+line 02
+line 03
+line 04
+line 05
+line 06
+line 07
+> redoTB(tb);
+> linesTB(tb);
+5
+> dumpTB(tb, false);
+line 01
+line 04
+line 05
+line 06
+line 07
+> releaseTB(tb);

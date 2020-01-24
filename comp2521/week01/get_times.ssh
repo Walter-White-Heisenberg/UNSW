@@ -1,0 +1,47 @@
+#!/bin/sh
+
+if test $# -ne 1
+then
+    exit
+fi
+
+times=$1
+./randList "$times" | sort -nr > /tmp/nums
+
+i=0
+mySum=0
+sysSum=0
+while test $i -lt 10
+do
+    myReal=`(time ./useIntList < /tmp/nums) 2>&1 |egrep real|cut -d$'\t' -f2`
+    sysReal=`(time sort -n < /tmp/nums) 2>&1 |egrep real|cut -d$'\t' -f2`    
+    
+    myMin=`echo $myReal|cut -d'm' -f1`
+    sysMin=`echo $sysReal|cut -d'm' -f1`
+    
+    mySec=`echo $myReal|cut -d'm' -f2|sed s/s//g`
+    sysSec=`echo $sysReal|cut -d'm' -f2|sed s/s//g`
+    
+    myTime=$(($myMin*60))
+    myTime=`echo "$myTime + $mySec"|bc`
+    sysTime=$(($sysMin*60))
+    sysTime=`echo "$sysTime + $sysSec"|bc`
+    
+    
+    mySum=`echo "$mySum + $myTime"|bc`
+    sysSum=`echo "$sysSum + $sysTime"|bc`
+    
+    i=$((i+1))
+done
+
+myRes=`echo "$mySum/10"|bc -l`
+sysRes=`echo "$sysSum/10"|bc -l`
+echo "Average time using './useIntList': $myRes"
+echo "Average time using 'sort -n': $sysRes"
+
+echo "$times    $myRes      $sysRes" >>output.txt
+    
+    
+
+
+

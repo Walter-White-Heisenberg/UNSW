@@ -1,0 +1,27 @@
+Results for Tests on 5000 values
+
+Depth = depth of tree, Cost = average #comparisons per search
+
+
+             Ascending Order        Prefix Order        Random Order
+Insert
+Method       Depth      Cost     Depth      Cost     Depth      Cost
+
+L         _5000___  __3114__  ___13___  ___12___  __28____  ___13___
+
+A         _5000___  __1887__  __2954__  __1115___  __28____  ___16___
+
+B         _206____  __63____  __20____  ___14___  __23____  ___15___
+
+R         _2492___  __952____  __1774__  __674__  __27____  ___13___
+
+S         _5000___  ___23___  __5000__  ___24___  __31____  ___23___
+
+V         _13_____  ___12___  __13____  ___12___  __15____  ___12___
+
+
+Notes (what the above indicates):
+
+1. "V" always has lower cost than A B R S L
+2. For L A B R, cost of ascending order is always higher.
+3. The cost for Random doesn't differ a lot.

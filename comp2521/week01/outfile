@@ -1,0 +1,30 @@
+1.c
+1.c~
+IntList.c
+IntList.c~
+IntList.h
+IntList.o
+Makefile
+egrep
+get_times.ssh
+get_times.ssh~
+out3
+outfile
+randList
+randList.c
+randList.o
+run_tests.ssh
+run_tests.ssh~
+tests
+timing.txt
+timing.txt~
+tmp.txt
+useIntList
+useIntList.c
+useIntList.o
+x
+y
+
+real	0m0.004s
+user	0m0.000s
+sys	0m0.000s

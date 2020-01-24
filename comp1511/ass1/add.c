@@ -1,0 +1,274 @@
+    if (douglas_in_hand_identifier == 1){
+        else if (number_in_hand > 1 && number_in_hand < 6){}
+        else{
+            printf("%d",card_in_random[0]);
+            //in last round, there is only one card
+        }
+    }    
+    else{
+        if (number_in_hand>5){}
+        else if (number_in_hand > 1 && number_in_hand < 6){}
+        else{
+            printf("%d",card_in_random[0]);
+            //in last round, there is only one card
+            }
+     }       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    if (number_in_hand > 5 && douglas_in_hand_identifier == 1){
+    //strategy when first to play
+        if (played_this_round == 0) {
+            if (is_prime_previous == 1) {
+                if (small_composite_in_hand[0] != 0) {
+                    printf("%d",small_composite_in_hand[counter_for_small_comp_array/2]);
+                }else{
+                    if (prime_in_hand[0] != 0) {
+                        printf("%d",prime_in_hand[0]);
+                    }else{  
+                        if (big_composite_in_hand[0] != 0) {
+                            printf("%d",big_composite_in_hand[0]);
+                        }else{
+                            printf("42");
+                        }
+                    }
+                }            
+            }else{
+                if (small_composite_in_hand[0] != 0) {
+                    printf("%d",small_composite_in_hand[counter_for_small_comp_array/2]);
+                }else{
+                    if (big_composite_in_hand[0] != 0) {
+                        printf("%d",big_composite_in_hand[0]);
+                    }else{  
+                        printf("42");
+                    }
+                }    
+            }                            
+        }else {
+            if (prime_identifier(card_current_out[0]) == 0) {
+                if (big_composite_identifier == 1) {
+                    printf("42");
+                }else{
+                    if (just_lower(card_current_out[0],big_composite_in_hand) != 0){
+                        printf("%d",just_lower(card_current_out[0],big_composite_in_hand));
+                    }else{
+                        if(card_to_play(card_current_out[0], max_card, small_composite_in_hand)){
+                            printf("%d",small_composite_in_hand[counter_for_small_comp_array]);
+                        }else{
+                            printf("42");
+                        }
+                    }
+                }
+            }else{
+                if(just_lower(card_current_out[0],prime_in_hand) != 0) {
+                    printf("%d",just_lower(card_current_out[0],prime_in_hand));
+                }else{
+                    printf("42");
+                }
+            }
+        }
+    }
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+if (number_in_hand > 0 && douglas_in_hand_identifier == 0){
+    //strategy when first to play
+        if (played_this_round == 0) {
+            if (is_prime_previous == 1) {
+                if (prime_in_hand[0] != 0) {
+                    printf("%d",prime_in_hand[counter_for_prime_array]);              
+                }else {
+                    if(is_douglas_out == 0) {
+                        if (small_composite_in_hand[0] != 0) {
+                            printf("%d",small_composite_in_hand[counter_for_small_comp_array]);
+                        }else {  
+                            printf("%d",big_composite_in_hand[0]);                       
+                        }
+                    }else{
+                        printf("%d",composite_in_hand[counter_for_comp_array]);
+                    }   
+                }
+            }else {
+                if(is_douglas_previous == 1) {
+                    if (composite_in_hand[0] != 0) {
+                        if(composite_in_hand[counter_for_comp_array] == 49 && counter_for_big_comp_array > 1) {  
+                            printf("%d",composite_in_hand[counter_for_comp_array-1]);
+                        }else{
+                            printf("%d",composite_in_hand[counter_for_comp_array]);
+                        }    
+                    }else{
+                        printf("%d",prime_in_hand[counter_for_prime_array]);                                                                        
+                    }  
+                }else {
+                    if (small_composite_in_hand[0] != 0) {
+                        printf("%d",small_composite_in_hand[counter_for_small_comp_array]);
+                    }else {  
+                        if(big_composite_in_hand[0] != 0){
+                            printf("%d",big_composite_in_hand[0]);                      
+                        }else {
+                            printf("%d",prime_in_hand[counter_for_prime_array]);                                                      
+                        }
+                    }
+                }
+            }                                       
+        }else if(played_this_round > 0 || played_this_round < 4){
+            if (prime_identifier(card_current_out[0]) == 0) {
+                if (card_to_play(card_current_out[0], 
+                    max_card, composite_in_hand) != 0){ 
+                    printf("%d",card_to_play(card_current_out[0], max_card, composite_in_hand));
+                }else {                       
+                    printf("%d",prime_in_hand[counter_for_prime_array]);
+                }
+            }else {
+                if (prime_in_hand[0] != 0){ 
+                    printf("%d",just_lower(max_card, prime_in_hand));
+                }else {
+                    printf("%d",composite_in_hand[counter_for_comp_array]);
+                }
+            }
+        }else{
+        //last to play, hte strategy is very similar to 
+        //"play_this_round >= 1 || play_this_round <= 3" situation
+            if (prime_identifier(card_current_out[0]) == 0) {
+                if(is_prime_out + is_douglas_out == 0) {
+                    if (biggest_possible(card_current_out[0], composite_in_hand) != 0) { 
+                        printf("%d",biggest_possible(card_current_out[0], composite_in_hand));
+                    }else {                       
+                        printf("%d",prime_in_hand[counter_for_prime_array]);
+                    }
+                }else{
+                    if (card_to_play(card_current_out[0], max_card, composite_in_hand) != 0) { 
+                        printf("%d",card_to_play(card_current_out[0], max_card, composite_in_hand));
+                    }else {                       
+                        printf("%d",prime_in_hand[counter_for_prime_array]);
+                    }
+                }
+            }else {
+                if(prime_in_hand[0] != 0) {
+                    printf("%d",just_lower(max_card, prime_in_hand));
+                }else {
+                    printf("%d",composite_in_hand[counter_for_comp_array]);
+                }
+            }
+        }
+    }   
+    // THEN REPLACE THIS PRINTF WITH CODE TO CHOOSE AND PRINT THE CARD YOU WISH TO PLAY 
+    printf("\n");    
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ if(number_in_hand > 7){
+//first to play
+    if(played_this_round == 0) {
+         if(small_composite_in_hand[0] != 0) {
+             printf("%d",small_composite_in_hand[counter_for_small_comp_array]);
+         }else {
+             if ((is_prime_previous = 1 && prime_in_hand[0] != 0) || 
+             (prime_in_hand[number_in_hand-1] != 0)){
+//this means if sombody played prime before and you have prime, 
+//or you only have prime card, then you play the smallest prime card
+                  printf("%d",prime_in_hand[0]);
+             }else{              
+                  if (big_composite_in_hand[0] > 0) {
+                      printf("%d",big_composite_in_hand[0]);
+                  }
+             }
+         }                 
+     }else if{
+     
+     }
+// last to play
+     else{}
+}  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                 

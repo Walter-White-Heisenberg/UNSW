@@ -1,0 +1,39 @@
+echo *
+echo *.? *.s ???
+echo *[aeio]*
+echo *.[ch]
+echo *.[ch]
+echo *.[ch]
+historyecho ~root
+historyhistoryecho command 1
+echo command 2
+historyecho command 1
+echo command 2
+history1echo command 1
+echo command 1
+echo command 1
+echo command 1
+echo command 1
+echo command 1
+echo command 1
+echo command 2
+echo command 1
+echo command 1
+echo command 1
+historyecho command 1
+echo command 2
+echo command 3
+echo command 1
+echo command 2
+echo command 3
+echo command 4
+echo command 5
+echo command 6
+echo command 7
+echo command 8
+echo command 9
+echo command 10
+echo command 11
+echo command 12
+historyhistory3echo command 7
+historynonnumber

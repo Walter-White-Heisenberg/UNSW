@@ -1,0 +1,83 @@
+'''
+description:
+auth_register(email, password, name_first, name_last)
+return(token)
+Given a user's first and last name, email address, and password, create a new account for them and return a new token for authentication in their session
+InputError when:
+Email entered is not a valid email.
+Email address is already being used by another user
+Password entered is not a valid password
+name_first is more than 50 characters
+name_last is more than 50 characters
+'''
+
+import pytest
+
+from auth_function import *
+'''
+assumption:
+1.the length of password is greater than 0
+2.The token is the email itself
+3.we need to tell user when there are error
+4.
+'''
+
+'''
+check for too short password
+'''
+
+def test_password():
+
+    with pytest.raises(ValueError) as e:
+        auth_register("liyun8686@126.com","1234","asdf","asdf") # will fail
+    assert str(e)  == "Password too short" 
+    
+    with pytest.raises(ValueError) as e:
+        auth_register("liyun8686@126.com","abcd","asdf","asdf") # will fail
+        assert str(e) == "Password too short"
+
+'''
+check for invalid email
+'''
+def test_invalidEmail():
+    with pytest.raise(ValueError) as e:
+        auth_register("liyun8686@126com","12345","asdf","asdf") # will fail
+        assert str(e) == "Invalid email"
+    
+    with pytest.raise(ValueError) as e:
+        auth_register("liyun8686126.com","12345","asdf","asdf") # will fail
+        assert str(e) == "Invalid email"
+    
+
+'''
+check for used email
+'''
+def test_usedEmail:
+        assert auth_register("asdljfh@gmail.com", "12345678","asdf","asdf") == {"token": "asdljfh@gmail.com"}  # success if assert return TRUE       
+    with pytest.raise(ValueError) as e:
+        auth_register("asdljfh@gmail.com", "12345678","asdfe","asdfe") # will fail
+        assert str(e) == "The email is already used by other account"
+'''
+check for too long first name
+'''
+
+def
+    with pytest.raise(ValueError) as e:
+        auth_register("liyun8686@126.com","12345","12345678901234567890123456789012345678901234567890aaaaaaa","asdf") # will fail
+        assert str(e) == "Too long sur name"
+'''
+check for too long last name
+'''
+
+def
+    with pytest.raise(ValueError) as e:
+        auth_register("liyun8686@126.com","12345","asdf","12345678901234567890123456789012345678901234567890aaaaaaaaaa") # will fail
+        assert str(e) == "Too long last name"
+'''
+check for working successfully by running
+'''
+def test_work_right():
+    auth_register("liyun8686@126.com","12345","aaasdf","aaasdf") == {"token": "liyun8686@126.com","u_id":1} # will success
+    
+print("Pass the test for auth_register")    
+    
